@@ -1,9 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "../headers/utils.h"
 #include "../headers/huffman.h"
-
-
 
 void encode(const char* filename) {
 
@@ -25,3 +24,5 @@ void countFrequencies(const char *filename, int freq[256]) {
     }
     fclose(file);
 }
+
+
