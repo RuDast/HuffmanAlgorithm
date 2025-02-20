@@ -1,7 +1,7 @@
 #include "headers/compression.h"
 
 int main(void) {
-    encode("F:\\HuffmanAlgorithm\\input.txt", "F:\\HuffmanAlgorithm\\output.txt");
-    decode("F:\\HuffmanAlgorithm\\output.txt", "F:\\HuffmanAlgorithm\\decode.txt");
+    encode("D:\\C\\HuffmanAlgorithm\\input.txt", "D:\\C\\HuffmanAlgorithm\\output.txt");
+    decode("D:\\C\\HuffmanAlgorithm\\output.txt", "D:\\C\\HuffmanAlgorithm\\decode.txt");
     return 0;
 }
