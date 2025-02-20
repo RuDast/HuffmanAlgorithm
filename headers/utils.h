@@ -17,7 +17,6 @@ typedef struct {
 
 void write_bit(BitWriter* bw, int bit);
 void flush_bit_writer(BitWriter* bw);
-
 // TODO int read_bit(BitReader* br);
 
 #endif // UTILS_H

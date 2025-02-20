@@ -2,7 +2,7 @@
 
 #include "../headers/huffman.h"
 #include "../headers/utils.h"
-#include "../headers/encode.h"
+#include "../headers/compression.h"
 
 int encode(const char* input_filename, const char* output_filename) {
     int freq[256] = {0};
