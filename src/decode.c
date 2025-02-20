@@ -1,10 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
+
 #include "../headers/huffman.h"
 #include "../headers/utils.h"
 #include "../headers/compression.h"
 
-int decode(const char* input_filename, const char* output_filename) {
+int decode(const char* input_filename, const char* output_extension) {
     FILE* inputFile = fopen(input_filename, "rb");
     if (!inputFile) {
         return -1;
@@ -18,6 +20,15 @@ int decode(const char* input_filename, const char* output_filename) {
     HuffmanNode* root = generateTree(freq);
     if (root == NULL) {
         return -1;
+    }
+
+    char output_filename[256];
+    strcpy(output_filename, input_filename);
+    char *dot = strrchr(output_filename, '.');
+    if (dot) {
+        strcpy(dot, output_extension);
+    } else {
+        strcat(output_filename, output_extension);
     }
 
     FILE* out = fopen(output_filename, "wb");

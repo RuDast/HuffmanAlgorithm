@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "../headers/huffman.h"
 #include "../headers/utils.h"
 #include "../headers/compression.h"
 
-int encode(const char* input_filename, const char* output_filename) {
+int encode(const char* input_filename) {
     int freq[256] = {0};
 
     FILE *inputFile = fopen(input_filename, "rb");
@@ -16,7 +17,6 @@ int encode(const char* input_filename, const char* output_filename) {
         freq[ch]++;
     fseek(inputFile, 0, SEEK_SET);
 
-
     HuffmanNode* root = generateTree(freq);
     if (!root)
         return -1;
@@ -24,6 +24,16 @@ int encode(const char* input_filename, const char* output_filename) {
     char codes[256][256] = {{0}};
     char code[256];
     generateCodes(root, code, 0, codes);
+
+    char output_filename[256];
+    strcpy(output_filename, input_filename);
+
+    char *dot = strrchr(output_filename, '.');
+    if (dot) {
+        strcpy(dot, ".huff");
+    } else {
+        strcat(output_filename, ".huff");
+    }
 
     FILE *outputFile = fopen(output_filename, "wb");
     if (!outputFile) {

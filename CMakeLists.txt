@@ -8,6 +8,5 @@ add_executable(HuffmanAlgorithm main.c
         src/list.c headers/list.h
         src/utils.c headers/utils.h
         src/encode.c src/decode.c headers/compression.h
-        tests/test.c
-        tests/test.h
+
 )
