@@ -3,9 +3,12 @@
 
 #include "huffman.h"
 
-typedef struct list {
-    Node* head;
-} List;
+typedef struct ListNode_t{
+    HuffmanNode* node;
+    struct ListNode_t* next;
+} Node;
 
+Node* insertToList(Node* head, HuffmanNode* huff_node);
+HuffmanNode* popToList(Node** head);
 
-#endif //LIST_H
+#endif // LIST_H

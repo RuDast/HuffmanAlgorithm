@@ -1,18 +1,17 @@
 #ifndef HUFFMAN_H
 #define HUFFMAN_H
 
-#define CODE_SIZE 256
+typedef struct HuffmanNode {
+    unsigned char ch;
+    int freq;
+    struct HuffmanNode *left;
+    struct HuffmanNode *right;
+} HuffmanNode;
 
-typedef struct node {
-    unsigned char symbol;
-    // unsigned char is_symbol;
-    unsigned int freq;
-    // unsigned char code[CODE_SIZE];
-    // int level;
-    struct node * left, *right, *next;
-} Node;
+HuffmanNode* createHuffmanNode(unsigned char ch, int freq);
+HuffmanNode* mergeNodes(HuffmanNode* left, HuffmanNode* right);
+HuffmanNode* generateTree(int freq[]);
+void generateCodes(HuffmanNode* root, char code[], int depth, char codes[256][256]);
+void deleteTree(HuffmanNode* root);
 
-Node * MakeNodeFromNode(const Node * left, const Node * right);
-Node * MakeTreeFromList(Node * head);
-
-#endif //HUFFMAN_H
+#endif // HUFFMAN_H

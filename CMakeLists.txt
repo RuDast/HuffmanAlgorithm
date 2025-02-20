@@ -3,8 +3,11 @@ project(HuffmanAlgorithm C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(HuffmanAlgorithm
+add_executable(HuffmanAlgorithm main.c
         src/huffman.c headers/huffman.h
-        src/utils.c headers/utils.h
         src/list.c headers/list.h
+        src/utils.c headers/utils.h
+        src/encode.c
+        headers/encode.h
+
 )

@@ -1,28 +1,33 @@
 #include <stdio.h>
-#include <stdlib.h>
-
 #include "../headers/utils.h"
-#include "../headers/huffman.h"
 
-void encode(const char* filename) {
-
+void write_bit(BitWriter* bw, int bit) {
+    bw->buffer = (bw->buffer << 1) | (bit & 1);
+    bw->bit_count++;
+    if (bw->bit_count == 8) {
+        fputc(bw->buffer, bw->file);
+        bw->bit_count = 0;
+        bw->buffer = 0;
+    }
 }
 
-void countFrequencies(const char *filename, int freq[256]) {
-    FILE* file = fopen(filename, "rb");
-    if (!file) {
-        perror("File open error!\n");
-        return;
+void flush_bit_writer(BitWriter* bw) {
+    if (bw->bit_count > 0) {
+        bw->buffer <<= (8 - bw->bit_count);
+        fputc(bw->buffer, bw->file);
+        bw->bit_count = 0;
+        bw->buffer = 0;
     }
-
-    fseek(file, 0L, SEEK_END);
-    const long long length = ftell(file);
-    fseek(file, 0, SEEK_SET);
-    for (int i = 0; i < length; ++i)
-    {
-        freq[(unsigned char)fgetc(file)] ++;
-    }
-    fclose(file);
 }
 
-
+int read_bit(BitReader* br) {
+    if (br->bit_count == 0) {
+        int temp = fgetc(br->file);
+        if (temp == EOF) return -1;
+        br->buffer = (unsigned char)temp;
+        br->bit_count = 8;
+    }
+    int bit = (br->buffer >> (br->bit_count - 1)) & 1;
+    br->bit_count--;
+    return bit;
+}

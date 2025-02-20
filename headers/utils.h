@@ -1,9 +1,23 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "huffman.h"
+#include <stdio.h>
 
-void countFrequencies(const char *filename, int freq[CODE_SIZE]);\
+typedef struct {
+    FILE *file;
+    unsigned char buffer;
+    int bit_count;
+} BitWriter;
 
+typedef struct {
+    FILE *file;
+    unsigned char buffer;
+    int bit_count;
+} BitReader;
 
-#endif //UTILS_H
+void write_bit(BitWriter* bw, int bit);
+void flush_bit_writer(BitWriter* bw);
+
+// TODO int read_bit(BitReader* br);
+
+#endif // UTILS_H

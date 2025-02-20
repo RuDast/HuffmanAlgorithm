@@ -1,6 +1,8 @@
-#include <stdio.h>
+#include "headers/decode.h"
+#include "headers/encode.h"
 
 int main(void) {
-    printf("Hello, World!\n");
+    //encode("D:\\C\\HuffmanAlgorithm\\input.txt", "D:\\C\\HuffmanAlgorithm\\output.txt");
+    decode("D:\\C\\HuffmanAlgorithm\\output.txt", "D:\\C\\HuffmanAlgorithm\\decode.txt");
     return 0;
 }
